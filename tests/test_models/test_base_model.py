@@ -3,39 +3,29 @@ from models.base_model import BaseModel
 
 
 class TestBaseModel(unittest.TestCase):
-
-def test_instance_attributes(self):
-        my_model = BaseModel()
-        self.assertTrue(hasattr(my_model, 'id'))
-        self.assertTrue(hasattr(my_model, 'created_at'))
-        self.assertTrue(hasattr(my_model, 'updated_at'))
-
-    def test_str_method(self):
+    def test_base_model(self):
         my_model = BaseModel()
         my_model.name = "My First Model"
         my_model.my_number = 89
-        expected_output = "[BaseModel] ({}) {}".format(my_model.id, my_model.__dict__)
-        self.assertEqual(str(my_model), expected_output)
+        self.assertEqual(my_model.name, "My First Model")
+        self.assertEqual(my_model.my_number, 89)
 
-    def test_save_method(self):
-        my_model = BaseModel()
+        # Testing __str__ method
+        expected_str = "[BaseModel] ({}) {}".format(my_model.id, my_model.__dict__)
+        self.assertEqual(str(my_model), expected_str)
+
+        # Testing save method
         prev_updated_at = my_model.updated_at
         my_model.save()
         self.assertNotEqual(my_model.updated_at, prev_updated_at)
 
-    def test_to_dict_method(self):
-        my_model = BaseModel()
-        my_model.name = "My First Model"
-        my_model.my_number = 89
+        # Testing to_dict method
         my_model_json = my_model.to_dict()
-
-        self.assertTrue(isinstance(my_model_json, dict))
-        self.assertEqual(my_model_json['name'], "My First Model")
-        self.assertEqual(my_model_json['my_number'], 89)
-        self.assertEqual(my_model_json['__class__'], "BaseModel")
-        self.assertTrue('updated_at' in my_model_json)
-        self.assertTrue('created_at' in my_model_json)
-        self.assertTrue('id' in my_model_json)
+        expected_dict = my_model.__dict__.copy()
+        expected_dict['__class__'] = 'BaseModel'
+        expected_dict['created_at'] = expected_dict['created_at'].isoformat()
+        expected_dict['updated_at'] = expected_dict['updated_at'].isoformat()
+        self.assertEqual(my_model_json, expected_dict)
 
 
 if __name__ == '__main__':
