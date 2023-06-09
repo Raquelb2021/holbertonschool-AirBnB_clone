@@ -14,6 +14,7 @@ class TestBaseModel(unittest.TestCase):
         expected_str = "[BaseModel] ({}) {}".format(my_model.id, my_model.__dict__)
         self.assertEqual(str(my_model), expected_str)
 
+
         # Testing save method
         prev_updated_at = my_model.updated_at
         my_model.save()
