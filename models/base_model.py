@@ -4,6 +4,7 @@ import models
 import uuid
 from datetime import datetime
 
+
 class BaseModel:
     """Initialization of basemodel class
      that defines all common attributes/methods for other classes:
@@ -12,10 +13,12 @@ class BaseModel:
         """
         uuid.uuid4() generate unique id
 
-        created_at assign with the current datetime when an instance is created
+        created_at assign with the current datetime
+        when an instance is created
 
         updated_at assign with the current datetime
-        when an instance is created and it will be updated every time you change your object
+        when an instance is created and it will be
+        updated every time you change your object
         """
         self.id = str(uuid.uuid4())
         self.created_at = datetime.now()
