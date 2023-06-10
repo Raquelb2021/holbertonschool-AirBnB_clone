@@ -3,7 +3,7 @@
 import models
 import uuid
 from datetime import datetime
-from models import storage
+from models.engine.file_storage import FileStorage
 
 
 class BaseModel:
@@ -31,6 +31,10 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = self.updated_at = datetime.now()
             storage.new(self)
+            # Create an instance of FileStorage
+        storage = FileStorage()
+        # Reload the objects from the JSON file
+        storage.reload()
 
 
     def __str__(self):
