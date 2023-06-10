@@ -5,7 +5,6 @@ import uuid
 from datetime import datetime
 
 
-
 class BaseModel:
     """Initialization of basemodel class
     that defines all common attributes/methods for other classes:
@@ -59,5 +58,3 @@ class BaseModel:
         new_dict['updated_at'] = self.updated_at.isoformat()
         new_dict['updated_at'] = self.updated_at.isoformat()
         return new_dict
-
-
