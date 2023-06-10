@@ -7,7 +7,7 @@ from datetime import datetime
 
 class BaseModel:
     """Initialization of basemodel class
-     that defines all common attributes/methods for other classes:
+    that defines all common attributes/methods for other classes:
     """
     def __init__(self, *args, **kwargs):
         """
@@ -30,6 +30,7 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = self.updated_at = datetime.now()
 
+
     def __str__(self):
         """returns a string representation of the object.
 
@@ -47,6 +48,7 @@ class BaseModel:
         attribute updated_at with the current datetime
         """
         self.updated_at = datetime.now()
+
 
     def to_dict(self):
         """The to_dict method returns a dictionary
