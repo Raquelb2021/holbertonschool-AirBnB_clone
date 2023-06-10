@@ -1,36 +1,80 @@
 import unittest
-import os
-import json
-from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
+from models.engine.file_storage import FileStorage
+
 
 class FileStorageTestCase(unittest.TestCase):
     def setUp(self):
-    # Create an instance of FileStorage
+        # Create a new instance of FileStorage before each test
         self.storage = FileStorage()
 
+
 def teardown(self):
-    # Remove the file.json created during testing
-    if os.path.exists("file.json"):
-        os.remove("file.json")
+    # Clean up any created objects after each test
+    self.storage = None
 
 def test_all(self):
-    # Test if all() returns the correct dictionary of objects
-            self.assertEqual(self.storage.all(), {})
-            #file storage
-            obj1 = BaseModel()
-            self.storage.new(obj1)
-            self.storage.save()
-            
-            # Clear the objects dictionary
-            self.storage.__objects = {}
-            
-            # Call reload() to load the objects from the JSON file
-            self.storage.reload()
-            
-            # Check if the objects are correctly loaded
-            self.assertEqual(len(self.storage.all()), 7)
-            self.assertIn(f"{type(obj1).__name__}.{obj1.id}", self.storage.all())
+    #Test the all() method
+    objects = self.storage.all()
+    self.assertEqual(objects, {}) #The initial dictionary should be empty
 
-if __name__ == "__main__":
+    # Create a BaseModel instance and add it to the storage
+    base_model = BaseModel()
+    self.storage.new(base_model)
+    objects = self.storage.all()
+    self.assertEqual(len(objects), 1) # There should be one object in the dictionary
+    self.assertIn(f"BaseModel. {base_model.id}", objects)  # The object should be present with the correct key
+
+def test_new(self):
+    # Test in new() method
+    objects = self.storage.all()
+    self.assertEqual(objects, {}) # The initial dictionary should be empty
+
+    # Create a BaseModel instance and add it to the storage
+    base_model = BaseModel()
+    self.storage.new(base_model)
+    objects = self.storage.all()
+    self.assertEqual(len(objects), 1) # There should be one object in the dictionary
+    self.assertIn(f"BaseModel.{base_model.id}", objects) # The object should be present with the correct key
+
+def test_save_reload(self):
+    objects = self.storage.all()
+    self.assertEqual(objects, {} )  # The initial dictionary should be empty
+
+    # Create a BaseModel instance and add it to the storage
+    base_model = BaseModel()
+    self.storage.new(base_model)
+
+    # Save the objects to the file and reload them
+    self.storage.save()
+    self.storage.reload()
+    objects = self.storage.all()
+    self.assertEqual(len(objects, 1)) # There should be one object in the dictionary after reloading
+    self.assertIn(f"BaseModel.{base_model.id}", objects) # The object should be present with the correct key
+
+def test_from_dict(self):
+    # Test from_dict(method)
+    obj_dict = {
+        "__class__": "BaseModel",
+        "id": "12345",
+        "created_at":"2023-06-10T12:00:00.000000",
+        "updated_at": "2023-06-10T12:30:00.000000",
+        "name": "Test Model"
+    }
+
+    base_model = self.storage.from_dict(obj_dict)
+    self.assertIsInstance(base_model, BaseModel)  # The object should be an instance of BaseModel
+    self.assertEqual(base_model.id, "12345")  # The id should match the value in the dictionary
+    self.assertEqual(base_model.name, "Test Model")  # The name should match the value in the dictionary
+
+    # The datetime attributes should be converted to datetime objects
+    self.assertEqual(base_model.created_at.year, 2023)
+    self.assertEqual(base_model.created_at.month, 6)
+    self.assertEqual(base_model.created_at.day, 10)
+    self.assertEqual(base_model.created_at.hour, 12)
+    self.assertEqual(base_model.created_at.minute, 0)
+    self.assertEqual(base_model.created_at.second, 0)
+    self.assertEqual(base_model.created_at.microsecond, 0)
+
+if __name__ == '__main__':
     unittest.main()
