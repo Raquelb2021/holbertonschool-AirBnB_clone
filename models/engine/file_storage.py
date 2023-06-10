@@ -1,5 +1,6 @@
 import json
 from models.base_model import BaseModel
+from datetime import datetime
 
 
 class FileStorage:
@@ -34,8 +35,17 @@ class FileStorage:
                 class_name, obj_id = key.split(".")
                 obj_dict = value
                 obj_dict["__class__"] = class_name
-                obj = eval(class_name)(**obj_dict)
-                self.__objects[key] = obj
+                for attr, value in obj_dict.items():
+                    if attr.endswith("_at"):
+                        obj_dict[attr] = datetime.strptime
+                        obj = self.from_dict(obj_dict)
+                        self.__objects[key] = obj
 
         except FileNotFoundError:
             pass
+
+def from_dict(self, obj_dict):
+    """Converts a dictionary representation of an object back into an instance of the corresponding class"""
+    class_name = obj_dict["__class__"]
+    del obj_dict["__class__"]
+    return globals()[class_name](**obj_dict)

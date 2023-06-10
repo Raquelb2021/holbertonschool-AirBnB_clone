@@ -2,6 +2,7 @@
 """class basemodel"""
 import models
 import uuid
+
 from datetime import datetime
 
 
@@ -52,7 +53,7 @@ class BaseModel:
 
     def to_dict(self):
         """The to_dict method returns a dictionary
-        containing all keys/values of the instance’s
+        containing all keys/values of the instance's
         """
         new_dict = self.__dict__.copy()
         new_dict['__class__'] = self.__class__.__name__
@@ -60,3 +61,12 @@ class BaseModel:
         new_dict['updated_at'] = self.updated_at.isoformat()
         new_dict['updated_at'] = self.updated_at.isoformat()
         return new_dict
+
+def to_dict(self):
+    """Returns a dictionary reptrsentation of the object"""
+    obj_dict = self.__dict_copy()
+    obj_dict['__class__'] = self.__class__.name__
+    for attr, val in obj_dict.items():
+        if isinstance(val, datetime):
+            obj_dict[attr] = val.isoformat
+            return obj_dict
