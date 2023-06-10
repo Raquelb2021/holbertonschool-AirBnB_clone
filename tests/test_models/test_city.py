@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-
+import unittest
 from models.city import City
 
 
@@ -10,7 +10,7 @@ class TestCity(unittest.TestCase):
 
     def test_name(self):
         city = City()
-        self.asserEqual(city.name, '')
+        self.assertEqual(city.name, '')
 
 
 if __name__ == '__main__':
