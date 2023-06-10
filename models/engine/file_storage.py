@@ -44,7 +44,8 @@ class FileStorage:
         except FileNotFoundError:
             pass
 
-def from_dict(self, obj_dict):
+@staticmethod
+def from_dict(obj_dict):
     """Converts a dictionary representation of an object back into an instance of the corresponding class"""
     class_name = obj_dict["__class__"]
     del obj_dict["__class__"]
