@@ -3,7 +3,7 @@
 import models
 import uuid
 from datetime import datetime
-from models.engine.file_storage import FileStorage
+
 
 
 class BaseModel:
@@ -30,12 +30,6 @@ class BaseModel:
         else:
             self.id = str(uuid.uuid4())
             self.created_at = self.updated_at = datetime.now()
-            storage.new(self)
-            # Create an instance of FileStorage
-        storage = FileStorage()
-        # Reload the objects from the JSON file
-        storage.reload()
-
 
     def __str__(self):
         """returns a string representation of the object.
@@ -54,11 +48,10 @@ class BaseModel:
         attribute updated_at with the current datetime
         """
         self.updated_at = datetime.now()
-        storage.save()
 
     def to_dict(self):
         """The to_dict method returns a dictionary
-        containing all keys/values of the instances
+        containing all keys/values of the instance’s
         """
         new_dict = self.__dict__.copy()
         new_dict['__class__'] = self.__class__.__name__
