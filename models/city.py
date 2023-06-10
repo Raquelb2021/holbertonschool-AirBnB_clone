@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import models.base_model from BaseModel
+from models.base_model import BaseModel
 
 
 class City(BaseModel):
