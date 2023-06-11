@@ -4,8 +4,8 @@ from models.base_model import BaseModel
 
 class Place(BaseModel):
     """Public class attributes"""
-    city_id = ''
-    user_id = ''
+    City_id = ''
+    User_id = ''
     name = ''
     description = ''
     number_rooms = 0
