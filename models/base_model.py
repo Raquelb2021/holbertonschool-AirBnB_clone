@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-"""class basemodel"""
+"""Class BaseModel"""
+
 import models
 import uuid
-
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ class BaseModel:
         else:
             self.id = str(uuid.uuid4())
             self.created_at = self.updated_at = datetime.now()
-
+            models.storage.new(self)
 
     def __str__(self):
         """returns a string representation of the object.
@@ -51,6 +51,8 @@ class BaseModel:
         self.updated_at = datetime.now()
 
 
+
+
     def to_dict(self):
         """The to_dict method returns a dictionary
         containing all keys/values of the instance's
@@ -62,11 +64,12 @@ class BaseModel:
         new_dict['updated_at'] = self.updated_at.isoformat()
         return new_dict
 
-def to_dict(self):
-    """Returns a dictionary reptrsentation of the object"""
-    obj_dict = self.__dict_copy()
-    obj_dict['__class__'] = self.__class__.name__
-    for attr, val in obj_dict.items():
-        if isinstance(val, datetime):
-            obj_dict[attr] = val.isoformat
-            return obj_dict
+    @classmethod
+    def from_dict(cls, obj_dict):
+        class_name = obj_dict.get('__class__')
+        if class_name:
+            class_ = models.classes[class_name]
+            obj = class_(**obj_dict)
+            return obj
+        else:
+            raise ValueError("Missing '__class__' key in dictionary.")
