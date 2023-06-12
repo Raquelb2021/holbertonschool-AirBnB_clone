@@ -39,20 +39,24 @@ class HBNBCommand(cmd.Cmd):
             new_instance.save()
             print(new_instance.id)
 
-    def do_show(self, arg):
-        """Prints the string representation of"""
-        args = shlex.split(arg)
-        if len(args) == 0:
-            self.print_error_message("class name missing")
-        elif args[0] != "BaseModel":
-            self.print_error_message("class doesn't exist")
-        elif len(args) < 2:
-            self.print_error_message("instance id missing")
-        else:
-            instances = storage.all("BaseModel")
-        instance = instances.get(args[1])
+def do_show(self, arg):
+    """Prints the string representation of an instance"""
+    args = shlex.split(arg)
+    if len(args) == 0:
+        self.print_error_message("class name missing")
+    elif args[0] not in ("BaseModel"):
+        self.print_error_message("class doesn't exist")
+    elif len(args) < 2:
+        self.print_error_message("instance id missing")
+    else:
+        model_name = args[0]
+        instance_id = args[1]
+        instance = storage.get_instance_by_id(model_name, instance_id)
         if instance is None:
             self.print_error_message("no instance found")
+        else:
+            print(instance)
+
 
     def do_destroy(self, arg):
         """Deletes an instance based on the class name and id"""
