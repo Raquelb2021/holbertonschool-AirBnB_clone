@@ -38,6 +38,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             new_instance = BaseModel()  # Create a new instance of BaseModel
             new_instance.save()  # Save the new instance to the JSON file
+            storage.save
             print(new_instance.id)  # Print the ID of the new instance
 
     def do_show(self, arg):
@@ -76,17 +77,17 @@ class HBNBCommand(cmd.Cmd):
         if len(args) > 0 and args[0] != "BaseModel":
             print("** class doesn't exist **")
         else:
-            instances = storage.all("BaseModel" if len(args) > 0 else None) # Get all instances of a class
+            instances = storage.all("BaseModel" if len(args) > 0 else None) 
             for instance in instances.values():
-                print(instance) # Print each instance
+                print(instance)
 
     def do_update(self, arg):
         """Updates an instance based on the class name"""
-        args = shlex.split(arg) # Split the argument string into a list of individual arguments
+        args = shlex.split(arg)
         if len(args) == 0:
-            print("** class name missing **")  # Set the attribute of the instance
+            print("** class name missing **")
         elif args[0] != "BaseModel":
-            print() # Save the updated instance
+            print()
 
 
 if __name__ == '__main__':
