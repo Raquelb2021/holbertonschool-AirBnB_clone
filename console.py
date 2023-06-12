@@ -101,20 +101,6 @@ class HBNBCommand(cmd.Cmd):
             if instance_key in instances:
                     del instances[instance_key]
                     storage.save()
-                        args2 = args.split(' ')
-        if args == "":
-            print("** class name missing **")
-        elif args2[0] in classes.keys():
-            if len(args2) < 2:
-                print("** instance id missing **")
-            else:
-                item_search = args2[0] + "." + args2[1]
-                item_all = storage.all()
-                if item_search in item_all:
-                    del item_all[item_search]
-                    storage.save()
-                else:
-                    print("** no instance found **")
 
     def do_all(self, arg):
         """Prints all instances of a class"""
