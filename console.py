@@ -52,7 +52,7 @@ class HBNBCommand(cmd.Cmd):
             instances = storage.all()
             instance = instances.get(args[1])
             if instance is None:
-                print("no instance found")
+self.print_error_message("no instance found")
             else:
                 print(instance)
 
