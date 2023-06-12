@@ -105,5 +105,4 @@ class HBNBCommand(cmd.Cmd):
 
 
 if __name__ == '__main__':
-    my_console = HBNBCommand(stdout=io.StringIO(), stdin=io.StringIO())
-    my_console.cmdloop()  # Start the command-line interface loop
+    HBNBCommand().cmdloop()  # Start the command-line interface loop
