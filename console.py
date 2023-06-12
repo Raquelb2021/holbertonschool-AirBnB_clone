@@ -5,6 +5,22 @@ import shlex
 from models import storage
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
+
+classes = {
+    "BaseModel": BaseModel,
+    "User": User,
+    "State": State,
+    "City": City,
+    "Amenity": Amenity,
+    "Place": Place,
+    "Review": Review
+}
 
 
 class HBNBCommand(cmd.Cmd):
@@ -38,6 +54,14 @@ class HBNBCommand(cmd.Cmd):
             new_instance = BaseModel()
             new_instance.save()
             print(new_instance.id)
+        if len(arg) < 1:
+            print("** class name missing **")
+        elif arg in classes.keys():
+            new = classes[arg]()
+            new.save()
+            print(new.id)
+        else:
+            print("** class doesn't exist **")
 
     def do_show(self, arg):
         """Prints the string representation of an instance"""
