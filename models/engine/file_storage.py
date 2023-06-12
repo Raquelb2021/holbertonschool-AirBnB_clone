@@ -51,15 +51,6 @@ def from_dict(self, obj_dict):
     else:
         raise ValueError("Missing '__class__' key in dictionary.")
 
-def get(self, class_name, id):
-        """Retrieve an instance from the storage by class name and ID"""
-        # Load instances from the JSON file
-        instances = self.all()
-
-        # Find the instance with the matching class name and ID
-        for instance in instances.values():
-            if instance.__class__.__name__ == class_name and instance.id == id:
-                return instance
-
-        # No instance found with the given class name and ID
-        return None
+def get(self, class_name, instance_id):
+        key = "{}.{}".format(class_name, instance_id)
+        return self.all().get(key)
