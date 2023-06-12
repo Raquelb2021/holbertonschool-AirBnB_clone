@@ -100,5 +100,5 @@ def do_update(self, arg):
             setattr(instance, args[2], args[3]) # Set the attribute of the instance
             instance.save()  # Save the updated instance
 
-    if __name__ == '__main__':
-        HBNBcommand().cmdloop()  # Start the command-line interface loop
+if __name__ == '__main__':
+    HBNBcommand().cmdloop()  # Start the command-line interface loop
