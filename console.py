@@ -77,14 +77,21 @@ class HBNBCommand(cmd.Cmd):
             for instance in instances.values():
                 print(instance)
 
-    def do_update(self, arg):
-        """Updates an instance based on the class name"""
-        args = shlex.split(arg)
-        if len(args) == 0:
-            print("** class name missing **")
-        elif args[0] != "BaseModel":
-            print()
-
+def do_update(self, arg):
+    """Updates an instance based on the class name"""
+    args = shlex.split(arg)
+    if len(args) == 0:
+        print("** class name missing **")
+    elif args[0] != "BaseModel":
+        print("** class doesn't exist **")
+    elif len(args) < 2:
+        print("** instance id missing **")
+    else:
+        instance = storage.get("BaseModel", args[1])  # Get the instance based on class name and ID
+        if not instance:
+            print("** no instance found **")
+        else:
+            print(instance)  # Print the string representation of the instance
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
