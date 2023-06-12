@@ -51,8 +51,6 @@ class BaseModel:
         self.updated_at = datetime.now()
 
 
-
-
     def to_dict(self):
         """The to_dict method returns a dictionary
         containing all keys/values of the instance's
@@ -73,3 +71,4 @@ class BaseModel:
             return obj
         else:
             raise ValueError("Missing '__class__' key in dictionary.")
+

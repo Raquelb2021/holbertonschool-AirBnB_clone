@@ -12,10 +12,6 @@ class HBNBCommand(cmd.Cmd):
     """class HBNB inherits from cmd.Cmd"""
     prompt = '(hbnb) '
 
-    def __init__(self):
-        """ init method to HBNBcommand subclass of cmd.CMD """
-        super().__init__()
-
     def do_quit(self, arg):
         """Quit command to exit the program"""
         return True
