@@ -11,11 +11,15 @@ class FileStorage:
     __objects = {}
 
     def all(self):
-        """RETURN ALL FILES"""
+        """
+        Returns a dictionary of all objects
+        """
         return self.__objects
 
     def new(self, obj):
-        """NEW OBJECT"""
+        """
+        Sets in __objects the obj with key <obj class name>.id
+        """
         key = "{}.{}".format(type(obj).__name__, obj.id)
         FileStorage.__objects[key] = obj
 
