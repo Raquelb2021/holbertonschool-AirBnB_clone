@@ -101,10 +101,6 @@ class HBNBCommand(cmd.Cmd):
         instance_id = args[1]
         instances = storage.all(model_name)
         instance = instances.get(instance_id)
-        for inst in instances.values():
-            if inst.__class__.__name__ == model_name and inst.id == instance_id:
-                instance = inst
-                break
         if instance is None:
             self.print_error_message("no instance found")
         else:
@@ -112,5 +108,6 @@ class HBNBCommand(cmd.Cmd):
             attribute_value = args[3]
             setattr(instance, attribute_name, attribute_value)
             instance.save()
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
