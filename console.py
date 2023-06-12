@@ -34,7 +34,6 @@ class HBNBCommand(cmd.Cmd):
         else:
             new_instance = BaseModel()  # Create a new instance of BaseModel
             new_instance.save()  # Save the new instance to the JSON file
-            storage.save
             print(new_instance.id)  # Print the ID of the new instance
 
     def do_show(self, arg):
