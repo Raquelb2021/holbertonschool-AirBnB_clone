@@ -86,12 +86,15 @@ def do_update(self, arg):
         print("** class doesn't exist **")
     elif len(args) < 2:
         print("** instance id missing **")
+    elif len(args) < 3:
+        print("** attribute name missing **")
     else:
         instance = storage.get("BaseModel", args[1])  # Get the instance based on class name and ID
         if not instance:
             print("** no instance found **")
         else:
-            print(instance)  # Print the string representation of the instance
+            setattr(instance, args[2], args[3])  # Set the attribute value
+            instance.save()  # Save the updated instance to the JSON file
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
