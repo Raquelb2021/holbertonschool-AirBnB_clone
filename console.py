@@ -74,7 +74,7 @@ class HBNBCommand(cmd.Cmd):
             else:
                 instances = storage.all()
                 instance_key = "BaseModel.{}".format(args[1])
-                if instance_key in instances:
+            if instance_key in instances:
                     del instances[instance_key]
                     storage.save()
 
