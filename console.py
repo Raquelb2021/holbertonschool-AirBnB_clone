@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Module 6. Console 0.0.1"""
 
+import io
 import sys
 import cmd
 import shlex
@@ -104,4 +105,5 @@ class HBNBCommand(cmd.Cmd):
 
 
 if __name__ == '__main__':
-    HBNBCommand().cmdloop()  # Start the command-line interface loop
+    my_console = HBNBCommand(stdout=io.StringIO(), stdin=io.StringIO())
+    my_console.cmdloop()  # Start the command-line interface loop
