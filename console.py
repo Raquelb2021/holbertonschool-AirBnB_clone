@@ -96,9 +96,9 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) < 4:
             self.print_error_message("value missing")
         else:
-            instance = storage.all()
+            instances = storage.all()
             instance_key = "BaseModel.{}".format(args[1])
-            intance = instance.get(instance_key)
+            instance = instances.get(instance_key)
             if instance is None:
                 self.print_error_message("no instance found")
             else:
