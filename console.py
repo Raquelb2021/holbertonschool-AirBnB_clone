@@ -11,20 +11,21 @@ from models.city import City
 from models.amenity import Amenity
 from models.review import Review
 from models import storage
+from models.user import User
+
+classes = {
+    "BaseModel": BaseModel,
+    "User": User,
+    "State": State,
+    "City": City,
+    "Amenity": Amenity,
+    "Place": Place,
+    "Review": Review
+}
 
 class HBNBCommand(cmd.Cmd):
     """class HBNB inherits from cmd.Cmd"""
     prompt = '(hbnb) '
-
-    classes = {
-        'BaseModel': BaseModel,
-        'Place': Place,
-        'State': State,
-        'City': City,
-        'Amenity': Amenity,
-        'Review': Review
-    }
-
 
 
     def do_quit(self, arg):
