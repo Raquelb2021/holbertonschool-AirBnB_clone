@@ -49,7 +49,7 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) < 2:
             self.print_error_message("instance id missing")
         else:
-            instance = storage.get("BaseModel", args[1])
+            instance = storage.get_instance_by_id("BaseModel", args[1])
             if instance is None:
                 self.print_error_message("no instance found")
             else:

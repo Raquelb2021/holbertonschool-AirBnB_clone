@@ -51,11 +51,10 @@ def from_dict(self, obj_dict):
     else:
         raise ValueError("Missing '__class__' key in dictionary.")
 
-def get(self, cls, id):
-        """Retrieve an object from the storage by class and ID"""
-        key = "{}.{}".format(cls, id)
-        objects = self.__objects
-        if key in objects:
-            return objects[key]
-        else:
-            return None
+def get_instance_by_id(self, class_name, instance_id):
+        """Retrieve the instance based on the class name and ID."""
+        instances = self.all(class_name)
+        for instance in instances.values():
+            if instance.id == instance_id:
+                return instance
+        return None
