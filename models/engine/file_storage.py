@@ -29,16 +29,16 @@ class FileStorage:
             obj_dict = {key: obj.to_dict() for key, obj in self.__objects.items()}
             json.dump(obj_dict, f)
 
-    def reload(self):
-        """RELOAD FILES"""
+def reload(self):
         try:
-            with open(self.__file_path, encoding='utf-8') as f:
-                obj_dict = json.load(f)
-                for key, value in obj_dict.items():
-                    class_name = value['__class__']
-                    obj = eval(class_name)(**value)
-                    self.__objects[key] = obj
-
+            with open(self.__file_path, 'r') as f:
+                data = json.load(f)
+                for key in data:
+                    class_name = data[key]['__class__']
+                    obj_dict = data[key]
+                    cls = getattr(models, class_name)
+                    instance = cls(**obj_dict)
+                    self.__objects[key] = instance
         except FileNotFoundError:
             pass
 
