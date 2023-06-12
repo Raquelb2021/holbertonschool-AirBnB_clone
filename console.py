@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""module for Console"""
+"""Module 6. Console 0.0.1"""
 import cmd
 import shlex
 from models.base_model import BaseModel  # Import the BaseModel class
