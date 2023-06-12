@@ -49,13 +49,12 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) < 2:
             self.print_error_message("instance id missing")
         else:
-            model_name = args[0]
-        instance_id = args[1]
-        instance = storage.get_instance_by_id(model_name, instance_id)
-        if instance is None:
-            print("no instance found")
-        else:
-            print(instance)
+            instances = storage.all()
+            instance = instances.get(args[1])
+            if instance is None:
+                self.print_error_message("no instance found")
+            else:
+                print(instance)
 
     def do_destroy(self, arg):
         """Deletes an instance based on the class name and id"""
@@ -97,18 +96,14 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) < 4:
             self.print_error_message("value missing")
         else:
-            instance = storage.get("BaseModel", args[1])
+            instance = storage.get_instance_by_id("BaseModel", args[1])
             if instance is None:
-                print_error_message("no instance found")
+                self.print_error_message("no instance found")
             else:
                 attribute_name = args[2]
                 attribute_value = args[3]
                 setattr(instance, attribute_name, attribute_value)
                 instance.save()
-
-def print_error_message(self, message):
-    """Prints an error message with the correct format"""
-    print(f"** {message} **")
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
