@@ -1,10 +1,10 @@
 #!/usr/bin/python3
+"""Module for console 0.0.1, 0.1, 1.0"""
 import cmd
 import shlex
 from models import storage
 from models.base_model import BaseModel
 
-"""Module for console 0.0.1, 0.1, 1.0"""
 class HBNBCommand(cmd.Cmd):
     """class HBNB inherits from cmd.Cmd"""
     prompt = '(hbnb) '
