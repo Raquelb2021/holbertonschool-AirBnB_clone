@@ -72,7 +72,7 @@ class HBNBCommand(cmd.Cmd):
             if instance is None:
                 self.print_error_message("no instance found")
             else:
-                storage.del("BaseModel", args[1])
+                storage.delete("BaseModel", args[1])
                 storage.save()
 
     def do_all(self, arg):
