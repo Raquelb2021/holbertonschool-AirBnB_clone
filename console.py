@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Module 6. Console 0.0.1"""
+"""Module for Console 0.0.1, 0.1, 1.0 """
 
 import cmd
 import shlex
