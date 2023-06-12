@@ -4,7 +4,7 @@ import cmd
 import shlex
 from models import storage
 from models.base_model import BaseModel
-from models.engine.file_storage import FileStorage
+from models.engine.file_storage import fileStorage
 from models.place import Place
 from models.state import State
 from models.city import City
@@ -15,6 +15,17 @@ from models import storage
 class HBNBCommand(cmd.Cmd):
     """class HBNB inherits from cmd.Cmd"""
     prompt = '(hbnb) '
+
+    classes = {
+        'BaseModel': BaseModel,
+        'Place': Place,
+        'State': State,
+        'City': City,
+        'Amenity': Amenity,
+        'Review': Review
+    }
+
+
 
     def do_quit(self, arg):
         """Quit command to exit the program"""
