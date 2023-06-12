@@ -50,3 +50,11 @@ def from_dict(self, obj_dict):
         return obj
     else:
         raise ValueError("Missing '__class__' key in dictionary.")
+
+def get_instance_by_id(self, class_name, instance_id):
+        """Retrieve the instance based on the class name and ID."""
+        instances = self.all(class_name)
+        for instance in instances.values():
+            if instance.id == instance_id:
+                return instance
+        return None
