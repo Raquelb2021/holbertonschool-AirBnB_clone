@@ -99,7 +99,8 @@ class HBNBCommand(cmd.Cmd):
             instances = storage.all()
         model_name = args[0]
         instance_id = args[1]
-        instance = None
+        instances = storage.all(model_name)
+        instance = instances.get(instance_id)
         for inst in instances.values():
             if inst.__class__.__name__ == model_name and inst.id == instance_id:
                 instance = inst
