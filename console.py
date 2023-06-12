@@ -96,17 +96,14 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) < 4:
             self.print_error_message("value missing")
         else:
-            model_name = args[0]
-        instance_id = args[1]
-        instances = storage.all(model_name)
-        instance = next((inst for inst in instances.values() if inst.id == instance_id), None)
-        if instance is None:
-            self.print_error_message("no instance found")
-        else:
-            attribute_name = args[2]
-            attribute_value = args[3]
-            setattr(instance, attribute_name, attribute_value)
-            instance.save()
-            print("OK")
+            instance = storage.get("BaseModel", args[1])
+            if instance is None:
+                self.print_error_message("no instance found")
+            else:
+                attribute_name = args[2]
+                attribute_value = args[3]
+                setattr(instance, attribute_name, attribute_value)
+                instance.save()
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
