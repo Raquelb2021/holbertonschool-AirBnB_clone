@@ -1,20 +1,10 @@
-#!/usr/bin/python3
-"""Module 6. Console 0.0.1, 0.1, 1.0"""
-
 import cmd
-# Used to handle arguments with spaces in them.
 import shlex
 from models import storage
 from models.base_model import BaseModel
-from models.engine.file_storage import FileStorage
-
 
 class HBNBCommand(cmd.Cmd):
-    """class HBNB inherits from cmd.Cmd, define
-    methods and our own command-line applications"""
-    # Defining a custom prompt attribute
     prompt = '(hbnb) '
-
 
     def do_quit(self, arg):
         """Quit command to exit the program"""
@@ -28,66 +18,86 @@ class HBNBCommand(cmd.Cmd):
         """Do nothing on empty input"""
         pass
 
+    def print_error_message(self, message):
+        """Helper method to print error messages"""
+        print("** " + message + " **")
+
     def do_create(self, arg):
-        """Creates a new instance of BaseModel, saves it
-        (to the JSON file) and prints the id."""
+        """Creates a new instance of BaseModel"""
         args = shlex.split(arg)
         if len(args) == 0:
-            print("** class name missing **")
-        elif args[0] != "BaseModel":
-            print("** class doesn't exist **")
+            self.print_error_message("class name missing")
+        elif args[0] not in ("BaseModel"):
+            self.print_error_message("class doesn't exist")
         else:
             new_instance = BaseModel()
             new_instance.save()
             print(new_instance.id)
 
     def do_show(self, arg):
-        """Prints the string representation"""
+        """Prints the string representation of an instance"""
         args = shlex.split(arg)
         if len(args) == 0:
-            print("** class name missing **")
-        elif args[0] != "BaseModel":
-            print("** class doesn't exist **")
+            self.print_error_message("class name missing")
+        elif args[0] not in ("BaseModel"):
+            self.print_error_message("class doesn't exist")
         elif len(args) < 2:
-            print("** instance id missing **")
+            self.print_error_message("instance id missing")
         else:
             instance = storage.get("BaseModel", args[1])
-            if not instance:
-                print("** no instance found **")
+            if instance is None:
+                self.print_error_message("no instance found")
             else:
                 print(instance)
 
     def do_destroy(self, arg):
-        """Deletes an instance based on the class name and id."""
+        """Deletes an instance based on the class name and id"""
         args = shlex.split(arg)
         if len(args) == 0:
-            print("** class name missing **")
-        elif args[0] != "BaseModel":
-            print("** class doesn't exist **")
+            self.print_error_message("class name missing")
+        elif args[0] not in ("BaseModel"):
+            self.print_error_message("class doesn't exist")
         elif len(args) < 2:
-            print("** instance id missing **")
+            self.print_error_message("instance id missing")
         else:
-            if not storage.delete("BaseModel", args[1]):
-                print("** no instance found **")
+            instance = storage.get("BaseModel", args[1])
+            if instance is None:
+                self.print_error_message("no instance found")
+            else:
+                storage.delete("BaseModel", args[1])
+                storage.save()
 
     def do_all(self, arg):
-        """Prints all instances of a class."""
+        """Prints all instances of a class"""
         args = shlex.split(arg)
-        if len(args) > 0 and args[0] != "BaseModel":
-            print("** class doesn't exist **")
+        if len(args) > 0 and args[0] not in ("BaseModel"):
+            self.print_error_message("class doesn't exist")
         else:
             instances = storage.all("BaseModel" if len(args) > 0 else None)
-            for instance in instances.values():
-                print(instance)
+            print([str(instance) for instance in instances.values()])
 
     def do_update(self, arg):
-        """Updates an instance """
+        """Updates an instance based on the class name and id"""
         args = shlex.split(arg)
         if len(args) == 0:
-            print("** class name missing **")
-        elif args[0] != "BaseModel":
-            print()
-
+            self.print_error_message("class name missing")
+        elif args[0] not in ("BaseModel"):
+            self.print_error_message("class doesn't exist")
+        elif len(args) < 2:
+            self.print_error_message("instance id missing")
+        elif len(args) < 3:
+            self.print_error_message("attribute name missing")
+        elif len(args) < 4:
+            self.print_error_message("value missing")
+        else:
+            instance = storage.get("BaseModel", args[1])
+            if instance is None:
+                self.print_error_message("no instance found")
+            else:
+                attribute_name = args[2]
+                attribute_value = args[3]
+                setattr(instance, attribute_name, attribute_value)
+                instance.save()
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
