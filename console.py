@@ -83,28 +83,39 @@ class HBNBCommand(cmd.Cmd):
             instances = storage.all("BaseModel" if len(args) > 0 else None)
             print([str(instance) for instance in instances.values()])
 
-    def do_update(self, arg):
-        """Updates an instance based on the class name and id"""
-        args = shlex.split(arg)
-        if len(args) == 0:
-            self.print_error_message("class name missing")
-        elif args[0] not in ("BaseModel"):
-            self.print_error_message("class doesn't exist")
-        elif len(args) < 2:
-            self.print_error_message("instance id missing")
-        elif len(args) < 3:
-            self.print_error_message("attribute name missing")
-        elif len(args) < 4:
-            self.print_error_message("value missing")
+def do_update(self, arg):
+    """Updates an instance based on the class name and id"""
+    args = shlex.split(arg)
+    if len(args) == 0:
+        self.print_error_message("class name missing")
+    elif args[0] not in ("BaseModel"):
+        self.print_error_message("class doesn't exist")
+    elif len(args) < 2:
+        self.print_error_message("instance id missing")
+    elif len(args) < 3:
+        self.print_error_message("attribute name missing")
+    elif len(args) < 4:
+        self.print_error_message("value missing")
+    else:
+        model_name = args[0]
+        instance_id = args[1]
+        attribute_name = args[2]
+        attribute_value = args[3]
+
+        if attribute_name in ("id", "created_at", "updated_at"):
+            self.print_error_message("attribute cannot be updated")
         else:
-            instance = storage.get_instance_by_id("BaseModel", args[1])
+            instance = storage.get(model_name, instance_id)
             if instance is None:
                 self.print_error_message("no instance found")
             else:
-                attribute_name = args[2]
-                attribute_value = args[3]
-                setattr(instance, attribute_name, attribute_value)
-                instance.save()
+                attribute_type = type(getattr(instance, attribute_name))
+                try:
+                    casted_value = attribute_type(attribute_value)
+                    setattr(instance, attribute_name, casted_value)
+                    instance.save()
+                except ValueError:
+                    self.print_error_message("invalid attribute value")
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
