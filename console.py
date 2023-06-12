@@ -98,12 +98,16 @@ class HBNBCommand(cmd.Cmd):
         else:
             instance = storage.get("BaseModel", args[1])
             if instance is None:
-                self.print_error_message("no instance found")
+                print_error_message("no instance found")
             else:
                 attribute_name = args[2]
                 attribute_value = args[3]
                 setattr(instance, attribute_name, attribute_value)
                 instance.save()
+
+def print_error_message(self, message):
+    """Prints an error message with the correct format"""
+    print(f"** {message} **")
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
