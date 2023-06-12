@@ -81,7 +81,11 @@ class HBNBCommand(cmd.Cmd):
         if len(args) > 0 and args[0] not in ("BaseModel"):
             self.print_error_message("class doesn't exist")
         else:
-            instances = storage.all("BaseModel" if len(args) > 0 else None)
+            instances = storage.all()
+            if len(args) > 0:
+                instances = {
+                        k: v for k, v in instances.items()
+                        if k.startswith("BaseModel")}
             print([str(instance) for instance in instances.values()])
 
     def do_update(self, arg):
