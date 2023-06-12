@@ -1,12 +1,13 @@
 #!/usr/bin/python3
-"""Module 6. Console 0.0.1"""
+"""Module for Console 0.0.1, 0.1, 1.0"""
+
 import cmd
 import shlex
 from models.base_model import BaseModel  # Import the BaseModel class
 from models import storage
 from models.engine.file_storage import FileStorage
 
-class HBNBcommand(cmd.cmd):
+class HBNBcommand(cmd.Cmd):
     """Class HBNBCommand inherits from cmd.Cmd and defines methods for our command-line application"""
     prompt = '(hbnb)'
 
