@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Module 6. Console 0.0.1"""
 
+import sys
 import cmd
 import shlex
 from models import storage
@@ -99,6 +100,7 @@ class HBNBCommand(cmd.Cmd):
             else:
                 setattr(instance, args[2], args[3])  # Set the attribute of the instance
                 instance.save()  # Save the updated instance
+
 
 
 if __name__ == '__main__':
