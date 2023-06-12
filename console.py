@@ -51,10 +51,10 @@ class HBNBCommand(cmd.Cmd):
         else:
             instances = storage.all()
             instance = instances.get("BaseModel.{}".format(args[1]))
-        if instance is None:
-            self.print_error_message("no instance found")
-        else:
-            print(instance)
+            if instance is None:
+                self.print_error_message("no instance found")
+            else:
+                print(instance)
 
 
     def do_destroy(self, arg):
