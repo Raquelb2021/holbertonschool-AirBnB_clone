@@ -124,7 +124,7 @@ class HBNBCommand(cmd.Cmd):
         args = shlex.split(arg)
         if len(args) == 0:
             self.print_error_message("class name missing")
-        elif args[0] not in ("BaseModel"):
+        elif args[0] not in ("BaseModel", "Place", "State", "City", "Amenity", "Review"):
             self.print_error_message("class doesn't exist")
         elif len(args) < 2:
             self.print_error_message("instance id missing")
@@ -134,7 +134,7 @@ class HBNBCommand(cmd.Cmd):
             self.print_error_message("value missing")
         else:
             instances = storage.all()
-            instance_key = "BaseModel.{}".format(args[1])
+            instance_key = "{}.{}".format(args[0], args[1])
             instance = instances.get(instance_key)
             if instance is None:
                 self.print_error_message("no instance found")
