@@ -108,15 +108,20 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, arg):
         """Prints all instances of a class"""
         args = shlex.split(arg)
-        if len(args) > 0 and args[0] not in ("BaseModel"):
+        if len(args) > 0 and args[0] not in self.classes:
             self.print_error_message("class doesn't exist")
         else:
             instances = storage.all()
-            if len(args) > 0:
-                instances = {
-                        k: v for k, v in instances.items()
-                        if k.startswith("BaseModel")}
-            print([str(instance) for instance in instances.values()])
+        if len(args) > 0:
+            cls = self.classes[args[0]]
+            instances = {
+                    k: v for k, v in instances.items()
+                    if isinstance(v, cls)}
+        else:
+            # print all instances of all classes
+            pass
+        print([str(instance) for instance in instances.values()])
+
 
     def do_update(self, arg):
         """Updates an instance based on the class name and id"""
