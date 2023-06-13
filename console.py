@@ -28,6 +28,20 @@ class HBNBCommand(cmd.Cmd):
     """class HBNB inherits from cmd.Cmd"""
     prompt = '(hbnb) '
 
+    def __init__(self):
+        """Initialize the command interpreter"""
+        cmd.Cmd.__init__(self)
+        self.prompt = "(hbnb) "
+        self.classes = {
+        "BaseModel": BaseModel,
+        "User": User,
+        "State": State,
+        "City": City,
+        "Amenity": Amenity,
+        "Place": Place,
+        "Review": Review
+    }
+
     def do_quit(self, arg):
         """Quit command to exit the program"""
         return True
