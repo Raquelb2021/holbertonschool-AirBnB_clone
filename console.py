@@ -99,7 +99,7 @@ class HBNBCommand(cmd.Cmd):
             self.print_error_message("instance id missing")
         else:
             instances = storage.all()
-            instance_key = "{}.{}".format(args[1], args[1])
+            instance_key = "{}.{}".format(args[0], args[1])
             if instance_key in instances:
                 if instance is None:
                     del instances[instance_key]
