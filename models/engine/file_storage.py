@@ -4,11 +4,27 @@ import json
 from models.base_model import BaseModel
 from datetime import datetime
 import models
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
+
 
 class FileStorage:
     """STORE NEW FILES"""
     __file_path = "file.json"
     __objects = {}
+
+    classes = {
+        'BaseModel': BaseModel,
+        'Place': Place,
+        'State': State,
+        'City': City,
+        'Amenity': Amenity,
+        'Review': Review
+    }
+
 
     def all(self):
         """
