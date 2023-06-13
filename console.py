@@ -59,18 +59,6 @@ class HBNBCommand(cmd.Cmd):
             new_instance.save()
             print(new_instance.id)
 
-        new_instance = BaseModel()
-        new_instance.save()
-        print(new_instance.id)
-        if len(arg) < 1:
-            print("** class name missing **")
-        elif arg in classes.keys():
-            new = classes[arg]()
-            new.save()
-            print(new.id)
-        else:
-            print("** class doesn't exist **")
-
     def do_show(self, arg):
         """Prints the string representation of an instance"""
         args = shlex.split(arg)
