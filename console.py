@@ -101,7 +101,7 @@ class HBNBCommand(cmd.Cmd):
             instances = storage.all()
             instance_key = "{}.{}".format(args[1], args[1])
             if instance_key in instances:
-            if instance is None:
+                if instance is None:
                 del instances[instance_key]
                 storage.save()
             else:
