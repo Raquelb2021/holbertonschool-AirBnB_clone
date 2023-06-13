@@ -82,7 +82,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             class_name = args[0]
             instance_id = args[1]
-            instance = storage.get_instance_by_id(class_name, instance_id)
+            instance = storage.all(class_name, instance_id)
         if instance:
             print(instance)
         else:
