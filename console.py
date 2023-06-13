@@ -28,20 +28,6 @@ class HBNBCommand(cmd.Cmd):
     """class HBNB inherits from cmd.Cmd"""
     prompt = '(hbnb) '
 
-    def __init__(self):
-        """Initialize the command interpreter"""
-        cmd.Cmd.__init__(self)
-        self.prompt = "(hbnb) "
-        self.classes = {
-        "BaseModel": BaseModel,
-        "User": User,
-        "State": State,
-        "City": City,
-        "Amenity": Amenity,
-        "Place": Place,
-        "Review": Review
-    }
-
     def do_quit(self, arg):
         """Quit command to exit the program"""
         return True
@@ -122,20 +108,15 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, arg):
         """Prints all instances of a class"""
         args = shlex.split(arg)
-        if len(args) > 0 and args[0] not in self.classes:
+        if len(args) > 0 and args[0] not in ("BaseModel"):
             self.print_error_message("class doesn't exist")
         else:
             instances = storage.all()
-        if len(args) > 0:
-            cls = self.classes[args[0]]
-            instances = {
-                    k: v for k, v in instances.items()
-                    if isinstance(v, cls)}
-        else:
-            # print all instances of all classes
-            pass
-        print([str(instance) for instance in instances.values()])
-
+            if len(args) > 0:
+                instances = {
+                        k: v for k, v in instances.items()
+                        if k.startswith("BaseModel")}
+            print([str(instance) for instance in instances.values()])
 
     def do_update(self, arg):
         """Updates an instance based on the class name and id"""
