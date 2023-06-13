@@ -49,7 +49,7 @@ class HBNBCommand(cmd.Cmd):
         args = shlex.split(arg)
         if len(args) == 0:
             self.print_error_message("class name missing")
-        elif args[0] not in ("BaseModel", "Place", "State", "City", "Amenity", "Review"):
+        elif args[0] not in ("BaseModel"):
             self.print_error_message("class doesn't exist")
         else:
             if args[0] == "BaseModel":
@@ -108,7 +108,7 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, arg):
         """Prints all instances of a class"""
         args = shlex.split(arg)
-        if len(args) > 0 and args[0] not in ("BaseModel", "Place", "State", "City", "Amenity", "Review"):
+        if len(args) > 0 and args[0] not in ("BaseModel"):
             self.print_error_message("class doesn't exist")
         else:
             instances = storage.all()
