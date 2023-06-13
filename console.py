@@ -5,6 +5,7 @@ import shlex
 from models import storage
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
+from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
@@ -35,9 +36,12 @@ class HBNBCommand(cmd.Cmd):
         elif args[0] not in ("BaseModel"):
             self.print_error_message("class doesn't exist")
         else:
-            new_instance = BaseModel()
-            new_instance.save()
-            print(new_instance.id)
+            if args[0] == "BaseModel":
+                new_instance = BaseModel()
+        elif args[0] == "User":
+            new_instance = User()
+        new_instance.save()
+        print(new_instance.id)
 
     def do_show(self, arg):
         """Prints the string representation of an instance"""
