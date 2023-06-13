@@ -109,7 +109,7 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, arg):
         """Prints all instances of a class"""
         args = shlex.split(arg)
-        if len(args) > 0 and args[0] not in ("BaseModel"):
+        if len(args) > 0 and args[0] not in ("BaseModel", "Place", "State", "City", "Amenity", "Review"):
             self.print_error_message("class doesn't exist")
         else:
             instances = storage.all()
