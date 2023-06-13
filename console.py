@@ -93,7 +93,7 @@ class HBNBCommand(cmd.Cmd):
         args = shlex.split(arg)
         if len(args) == 0:
             self.print_error_message("class name missing")
-        elif args[0] not in ("BaseModel"):
+        elif args[0] not in ("BaseModel", "Place", "State", "City", "Amenity", "Review"):
             self.print_error_message("class doesn't exist")
         elif len(args) < 2:
             self.print_error_message("instance id missing")
