@@ -96,17 +96,11 @@ class HBNBCommand(cmd.Cmd):
             if instance is None:
                 self.print_error_message("no instance found")
             else:
-                class_name = args[0]
-                instance_id = args[1]
-                class_obj = classes[class_name]
-                instances = class_obj.storage.all()
                 instances = storage.all()
                 instance_key = "BaseModel.{}".format(args[1])
-                instance_key = "{}.{}".format(class_name, instance_id)
             if instance_key in instances:
                     del instances[instance_key]
                     storage.save()
-                    class_obj.storage.save()
 
     def do_all(self, arg):
         """Prints all instances of a class"""
