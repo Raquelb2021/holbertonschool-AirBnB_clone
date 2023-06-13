@@ -6,6 +6,8 @@ from models import storage
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 from models.user import User
+<<<<<<< HEAD
+=======
 from models.state import State
 from models.city import City
 from models.amenity import Amenity
@@ -21,6 +23,7 @@ classes = {
     "Place": Place,
     "Review": Review
 }
+>>>>>>> 6e53a032ba4517f56caf880caa04013ca6790f20
 
 
 class HBNBCommand(cmd.Cmd):
@@ -51,6 +54,14 @@ class HBNBCommand(cmd.Cmd):
         elif args[0] not in ("BaseModel"):
             self.print_error_message("class doesn't exist")
         else:
+<<<<<<< HEAD
+            if args[0] == "BaseModel":
+                new_instance = BaseModel()
+        elif args[0] == "User":
+            new_instance = User()
+        new_instance.save()
+        print(new_instance.id)
+=======
             new_instance = BaseModel()
             new_instance.save()
             print(new_instance.id)
@@ -62,6 +73,7 @@ class HBNBCommand(cmd.Cmd):
             print(new.id)
         else:
             print("** class doesn't exist **")
+>>>>>>> 6e53a032ba4517f56caf880caa04013ca6790f20
 
     def do_show(self, arg):
         """Prints the string representation of an instance"""
