@@ -6,8 +6,6 @@ from models import storage
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 from models.user import User
-<<<<<<< HEAD
-=======
 from models.state import State
 from models.city import City
 from models.amenity import Amenity
@@ -23,7 +21,7 @@ classes = {
     "Place": Place,
     "Review": Review
 }
->>>>>>> 6e53a032ba4517f56caf880caa04013ca6790f20
+
 
 
 class HBNBCommand(cmd.Cmd):
@@ -54,17 +52,16 @@ class HBNBCommand(cmd.Cmd):
         elif args[0] not in ("BaseModel"):
             self.print_error_message("class doesn't exist")
         else:
-<<<<<<< HEAD
             if args[0] == "BaseModel":
                 new_instance = BaseModel()
-        elif args[0] == "User":
-            new_instance = User()
+            elif args[0] == "User":
+                new_instance = User()
         new_instance.save()
         print(new_instance.id)
-=======
-            new_instance = BaseModel()
-            new_instance.save()
-            print(new_instance.id)
+
+        new_instance = BaseModel()
+        new_instance.save()
+        print(new_instance.id)
         if len(arg) < 1:
             print("** class name missing **")
         elif arg in classes.keys():
@@ -73,7 +70,6 @@ class HBNBCommand(cmd.Cmd):
             print(new.id)
         else:
             print("** class doesn't exist **")
->>>>>>> 6e53a032ba4517f56caf880caa04013ca6790f20
 
     def do_show(self, arg):
         """Prints the string representation of an instance"""
@@ -108,17 +104,11 @@ class HBNBCommand(cmd.Cmd):
             if instance is None:
                 self.print_error_message("no instance found")
             else:
-                class_name = args[0]
-                instance_id = args[1]
-                class_obj = classes[class_name]
-                instances = class_obj.storage.all()
                 instances = storage.all()
                 instance_key = "BaseModel.{}".format(args[1])
-                instance_key = "{}.{}".format(class_name, instance_id)
             if instance_key in instances:
                     del instances[instance_key]
                     storage.save()
-                    class_obj.storage.save()
 
     def do_all(self, arg):
         """Prints all instances of a class"""
