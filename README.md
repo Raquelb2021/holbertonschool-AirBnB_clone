@@ -1,5 +1,5 @@
 <p align="center">
-AirBnB clone - The console
+**AirBnB clone - The console**
 </p>
 
 
