@@ -3,8 +3,9 @@ ____________________________
 
 About the project:
 
-storage:
-
+storage: 
+In this project we were suposed to store 
+our data on a Json file, 
 console:
 
 compile/ testing:
