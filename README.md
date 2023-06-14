@@ -3,5 +3,10 @@ ____________________________
 
 About the project:
 
+storage:
 
-About our command interpreter:
+console:
+
+compile/ testing:
+
+our files:
