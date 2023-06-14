@@ -22,6 +22,6 @@ Documented commands (type help <topic>):
 ========================================
 EOF  all  create  destroy  help  quit  show  update
 
-(hbnb)
+(hbnb).
 
-  ## our files:
+## our files:
