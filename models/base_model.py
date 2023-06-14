@@ -71,4 +71,3 @@ class BaseModel:
             return obj
         else:
             raise ValueError("Missing '__class__' key in dictionary.")
-
