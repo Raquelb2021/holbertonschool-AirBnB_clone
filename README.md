@@ -1,4 +1,6 @@
+<p align="center">
 AirBnB clone - The console
+</p>
 ____________________________
 
 About the project:
