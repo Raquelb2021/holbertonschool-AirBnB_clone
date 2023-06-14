@@ -12,6 +12,7 @@ In this project we were suposed to store
 our data on a Json file, 
 console:
 
-## testing:
+## testing: The test files have to start by test_ inside the tests/test_models/ folders
+  and should be executed using this command python3 -m unittest discover tests or you also test file by file using this command python3 -m unittest tests/test_models/test_base_model.py :shipit:
 
 ## our files:
