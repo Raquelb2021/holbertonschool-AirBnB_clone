@@ -29,7 +29,7 @@ EOF  all  create  destroy  help  quit  show  update
 (hbnb)
   
  
-  - $ python3 -m unittest tests/test_base_model.py
+  # $ python3 -m unittest tests/test_base_model.py
 
 ...................................................................................
 ...................................................................................
