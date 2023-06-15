@@ -8,7 +8,10 @@ the console we have allows users to create, update, and delete instances of clas
 
 ## storage: 
 In this project we were suposed to store 
-our data on a Json file, 
+our data on a Json file
+  __file_path: string - path to the JSON file (ex: file.json)
+  __objects: dictionary - empty but will store all objects by <class name>.id
+  
 console:
 
 ## testing:
@@ -26,7 +29,6 @@ EOF  all  create  destroy  help  quit  show  update
 (hbnb)
   
  
-  ```diff
   # $ python3 -m unittest tests/test_base_model.py
 
 ...................................................................................
