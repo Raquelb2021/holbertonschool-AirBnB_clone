@@ -9,7 +9,7 @@ the console we have allows users to create, update, and delete instances of clas
 ## storage: 
 In this project we were suposed to store 
 our data on a Json file
-  __file_path: string - path to the JSON file (ex: file.json)
+  <p> __file_path: string - path to the JSON file (ex: file.json)</p>
   __objects: dictionary - empty but will store all objects by <class name>.id
   
 console:
