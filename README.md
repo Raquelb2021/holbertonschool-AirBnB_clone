@@ -28,7 +28,7 @@ EOF  all  create  destroy  help  quit  show  update
 
 (hbnb)
   ```
- 
+ ```diff
    $ python3 -m unittest tests/test_base_model.py
 
 ...................................................................................
@@ -38,5 +38,5 @@ EOF  all  create  destroy  help  quit  show  update
 Ran 189 tests in 13.135s
 
 OK
-
+```
 ## our files:
