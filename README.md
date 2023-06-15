@@ -1,6 +1,5 @@
 <h3> <p align="center">
 AirBnB clone - The console </p</h3>
-# <center>![65f4a1dd9c51265f49d0](https://github.com/Raquelb2021/holbertonschool-AirBnB_clone/assets/103212241/65b4a1ca-127a-4d68-9246-3995fe5748e0)
 
   
 ## About the project:
