@@ -12,7 +12,8 @@ our data on a Json file
   <p> __file_path: string - path to the JSON file (ex: file.json)</p>
   __objects: dictionary - empty but will store all objects by <class name>.id
   
-console:
+## console:
+  The script defines a class called HBNBCommand that inherits from the cmd.Cmd class. This class defines several methods for interacting with the storage system, including methods for creating, showing, destroying, and listing instances of various classes. The do_quit and do_EOF methods allow the user to exit the program.
 
 ## testing:
 The test files have to start by test_ inside the tests/test_models/ folders
@@ -28,6 +29,7 @@ EOF  all  create  destroy  help  quit  show  update
 
 (hbnb)
   ```
+  
  ```diff
    $ python3 -m unittest tests/test_base_model.py
 
@@ -39,4 +41,5 @@ Ran 189 tests in 13.135s
 
 OK
 ```
+  
 ## our files:
