@@ -25,8 +25,7 @@ EOF  all  create  destroy  help  quit  show  update
 
 (hbnb)
   
-  <p>
-  </p>
+ 
   ```diff
   $ python3 -m unittest tests/test_base_model.py
 
