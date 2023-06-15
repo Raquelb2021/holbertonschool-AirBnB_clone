@@ -16,7 +16,7 @@ The test files have to start by test_ inside the tests/test_models/ folders
   and should be executed using this command python3 -m unittest discover tests or you also test file by file using this command python3 -m unittest tests/test_models/test_base_model.py :shipit:
   
   ```diff 
-  $ ./console.py
+  # $ ./console.py
 (hbnb) help
 
 Documented commands (type help <topic>):
@@ -27,7 +27,7 @@ EOF  all  create  destroy  help  quit  show  update
   
  
   ```diff
-  $ python3 -m unittest tests/test_base_model.py
+  # $ python3 -m unittest tests/test_base_model.py
 
 ...................................................................................
 ...................................................................................
