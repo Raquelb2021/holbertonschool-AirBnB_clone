@@ -15,7 +15,9 @@ from models.user import User
 class FileStorage:
     """STORE NEW FILES"""
     __file_path = "file.json"
+    # Private class variable to store the name of the file to which JSON string is written.
     __objects = {}
+    # Private class variable to store all objects.
 
     classes = {
         'BaseModel': BaseModel,
@@ -25,6 +27,7 @@ class FileStorage:
         'Amenity': Amenity,
         'Review': Review
     }
+    # Class variable to map class names to classes.
 
     def all(self):
         """
@@ -61,6 +64,7 @@ class FileStorage:
 
 
 def from_dict(self, obj_dict):
+    # This function converts a dictionary into an object of a given class.
     class_name = obj_dict.get('__class__')
     if class_name:
         class_ = models.classes[class_name]
