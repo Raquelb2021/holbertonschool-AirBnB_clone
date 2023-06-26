@@ -8,8 +8,9 @@ header{
 }
 
 header div.logo {
-	position: relative;
-	top: 50%;
-	left: 20px;
-	transform: translateY(-50%);
+	position: absolute;
+    width: 142px;
+    height: 60px;
+    background-image: url(../images/logo.png);
+    left: 20px;
 }
