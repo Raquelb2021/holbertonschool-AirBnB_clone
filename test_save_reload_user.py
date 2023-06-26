@@ -3,12 +3,15 @@ from models import storage
 from models.base_model import BaseModel
 from models.user import User
 
+# Retrieve all objects from storage
 all_objs = storage.all()
+# Print the reloaded objects
 print("-- Reloaded objects --")
 for obj_id in all_objs.keys():
     obj = all_objs[obj_id]
     print(obj)
 
+# Create a new User instance
 print("-- Create a new User --")
 my_user = User()
 my_user.first_name = "Betty"
@@ -18,6 +21,7 @@ my_user.password = "root"
 my_user.save()
 print(my_user)
 
+# Create another new User instance
 print("-- Create a new User 2 --")
 my_user2 = User()
 my_user2.first_name = "John"
